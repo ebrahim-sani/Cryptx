@@ -10,9 +10,9 @@ const NavbarItem = ({ title, classProps }) => {
 };
 
 const Navbar = () => {
-  const { connectWallet } = useContext(TransactionContext);
-
+  const { connectWallet, currentAccount } = useContext(TransactionContext);
   const [toggleMenu, setToggleMenu] = useState(false);
+
   return (
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
       <div className="md:flex-[0.5] flex-initial justify-center items-center">
@@ -22,12 +22,18 @@ const Navbar = () => {
         {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
           <NavbarItem key={item + index} title={item} />
         ))}
-        <li
-          onClick={connectWallet}
-          className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]"
-        >
-          Login
-        </li>
+        {currentAccount ? (
+          <button className="disabled bg-gray-300 py-2 px-7 mx-4 rounded-full cursor-not-allowed">
+            Connected
+          </button>
+        ) : (
+          <button
+            onClick={connectWallet}
+            className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]"
+          >
+            Connect
+          </button>
+        )}
       </ul>
 
       <div className="flex relative">
