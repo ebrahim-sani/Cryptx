@@ -1,5 +1,11 @@
 import "./App.css";
-import { Navbar, Welcome, Footer, Services, Transactions } from "./components";
+import {
+  Navbar,
+  Welcome,
+  Footer,
+  Services,
+  Transactions,
+} from "./components/Index.js";
 
 function App() {
   return (
